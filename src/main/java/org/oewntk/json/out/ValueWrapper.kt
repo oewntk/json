@@ -1,6 +1,10 @@
 package org.oewntk.json.out
 
+import kotlinx.serialization.ExperimentalSerializationApi
+
+@OptIn(ExperimentalSerializationApi::class)
 @kotlinx.serialization.Serializable
+@kotlinx.serialization.json.JsonClassDiscriminator("#type")
 sealed class Value {
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("null")
@@ -8,43 +12,43 @@ sealed class Value {
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("bool")
-    data class BoolValue(val v: Boolean) : Value()
+    data class BoolValue(@kotlinx.serialization.SerialName("#val") val v: Boolean) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("int")
-    data class IntValue(val v: Int) : Value()
+    data class IntValue(@kotlinx.serialization.SerialName("#val") val v: Int) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("long")
-    data class LongValue(val v: Long) : Value()
+    data class LongValue(@kotlinx.serialization.SerialName("#val") val v: Long) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("float")
-    data class FloatValue(val v: Float) : Value()
+    data class FloatValue(@kotlinx.serialization.SerialName("#val") val v: Float) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("double")
-    data class DoubleValue(val v: Double) : Value()
+    data class DoubleValue(@kotlinx.serialization.SerialName("#val") val v: Double) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("char")
-    data class CharValue(val v: Char) : Value()
+    data class CharValue(@kotlinx.serialization.SerialName("#val") val v: Char) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("string")
-    data class StringValue(val v: String) : Value()
+    data class StringValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("list")
-    data class ListValue(val v: List<Value>) : Value()
+    data class ListValue(@kotlinx.serialization.SerialName("#val") val v: List<Value>) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("set")
-    data class SetValue(val v: Set<Value>) : Value()
+    data class SetValue(@kotlinx.serialization.SerialName("#val") val v: Set<Value>) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("map")
-    data class MapValue(val v: Map<String, Value>) : Value()
+    data class MapValue(@kotlinx.serialization.SerialName("#val") val v: Map<String, Value>) : Value()
 }
 
 fun Any?.toValue(): Value = when (this) {

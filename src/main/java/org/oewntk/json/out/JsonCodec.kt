@@ -24,7 +24,7 @@ class JsonCodec(prettyPrint: Boolean = true, val jsonMethod: JsonMethod = JsonMe
         return when (jsonMethod) {
             JsonMethod.ANY_SERIALIZER -> delegate.encodeToString(SerializableWrapper.serializer(), SerializableWrapper(value))
             JsonMethod.JSON_ELEMENT -> delegate.encodeToString(AnySerializerThroughJsonElement, value)
-            JsonMethod.VALUE_WRAPPER -> delegate.encodeToString(value.toValue())
+            JsonMethod.VALUE_WRAPPER -> delegate.encodeToString<Value>(value.toValue())
         }
     }
 
