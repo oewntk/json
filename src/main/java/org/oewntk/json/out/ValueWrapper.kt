@@ -63,7 +63,7 @@ fun Any?.toValue(): Value = when (this) {
     is Array<*> -> Value.ListValue(this.map { it.toValue() })
     is List<*> -> Value.ListValue(this.map { it.toValue() })
     is Set<*> -> Value.SetValue(this.map { it.toValue() }.toSet())
-    is Map<*, *> -> Value.MapValue(this.entries.associate { (k, v) -> (k as String) to v.toValue() })
+    is Map<*, *> -> Value.MapValue(this.entries.associate { (k, v) -> (k.toString()) to v.toValue() })
     else -> error("Unsupported type: ${this.let { it::class }}")
 }
 
