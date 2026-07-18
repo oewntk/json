@@ -21,7 +21,7 @@ class TestJsonMethods {
         domain = "communication",
         members = setOf("joke", "jest"),
         definitions = listOf("tell a joke", "speak humorously"),
-        examples = listOf("He often jokes" to null),
+        examples = listOf(Example("He often jokes", null)),
     ).apply {
     }
 
