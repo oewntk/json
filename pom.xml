@@ -8,7 +8,7 @@
     <groupId>io.github.oewntk</groupId>
     <artifactId>json</artifactId>
     <version>3.0.1</version>
-    <name>to_json</name>
+    <name>json</name>
     <description>Serialize Wordnet model to JSON file.</description>
     <url>https://github.com/oewntk/json</url>
 
