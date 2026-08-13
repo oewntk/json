@@ -10,7 +10,7 @@ enum class JsonMethod {
     VALUE_WRAPPER,
 }
 
-class JsonCodec(prettyPrint: Boolean = true, val jsonMethod: JsonMethod = JsonMethod.ANY_SERIALIZER) {
+class JsonCodec(prettyPrint: Boolean = true, val jsonMethod: JsonMethod = JsonMethod.JSON_ELEMENT) {
 
     @OptIn(ExperimentalSerializationApi::class)
     val delegate = Json {
