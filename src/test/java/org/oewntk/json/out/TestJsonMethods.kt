@@ -9,14 +9,14 @@ class TestJsonMethods {
     val lex = Lex(
         lemma = "jest",
         key2 = "v",
-        senseKeys = listOf("jest%2:32:00::", "jest%2:29:00::")
+        senseKeys = listOf(SenseKey("jest%2:32:00::"), SenseKey("jest%2:29:00::"))
     )
         .apply {
             pronunciations = setOf(Pronunciation("dʒəʊk", "GB"), Pronunciation("dʒoʊk", "US"))
         }
 
     val synset = Synset(
-        synsetId = "00855315-v",
+        synsetId = SynsetId("00855315-v"),
         type = SynsetType.V,
         domain = "communication",
         members = setOf("joke", "jest"),
@@ -25,7 +25,7 @@ class TestJsonMethods {
     ).apply {
     }
 
-    val sense = Sense("jest%2:32:00::", lex.key, "00855315-v")
+    val sense = Sense(SenseKey("jest%2:32:00::"), lex.key, SynsetId("00855315-v"))
 
     @Test
     fun testDummyLex() {
