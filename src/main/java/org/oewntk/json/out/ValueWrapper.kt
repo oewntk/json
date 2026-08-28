@@ -1,6 +1,8 @@
 package org.oewntk.json.out
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import org.oewntk.model.SenseKey
+import org.oewntk.model.SynsetId
 
 @OptIn(ExperimentalSerializationApi::class)
 @kotlinx.serialization.Serializable
@@ -9,6 +11,14 @@ sealed class Value {
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("null")
     object NullValue : Value()
+
+    @kotlinx.serialization.Serializable
+    @kotlinx.serialization.SerialName("synsetid")
+    data class SynsetIdValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
+
+    @kotlinx.serialization.Serializable
+    @kotlinx.serialization.SerialName("sensekey")
+    data class SenseKeyValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("bool")
@@ -53,6 +63,8 @@ sealed class Value {
 
 fun Any?.toValue(): Value = when (this) {
     null -> Value.NullValue
+    is SynsetId -> Value.StringValue(this.id)
+    is SenseKey -> Value.StringValue(this.id)
     is Boolean -> Value.BoolValue(this)
     is Int -> Value.IntValue(this)
     is Long -> Value.LongValue(this)
@@ -69,6 +81,8 @@ fun Any?.toValue(): Value = when (this) {
 
 fun Value?.fromValue(): Any = when (this) {
     Value.NullValue -> "null"
+    is Value.SynsetIdValue -> v
+    is Value.SenseKeyValue -> v
     is Value.BoolValue -> v
     is Value.IntValue -> v
     is Value.LongValue -> v
