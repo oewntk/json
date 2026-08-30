@@ -22,7 +22,7 @@ sealed class Value {
     data class SenseKeyValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
 
     @kotlinx.serialization.Serializable
-    @kotlinx.serialization.SerialName("sensekey")
+    @kotlinx.serialization.SerialName("pronunciation_value")
     data class PronunciationValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
 
     @kotlinx.serialization.Serializable
