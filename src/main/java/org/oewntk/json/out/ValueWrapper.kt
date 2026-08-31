@@ -1,6 +1,7 @@
 package org.oewntk.json.out
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import org.oewntk.model.Lemma
 import org.oewntk.model.PronunciationValue
 import org.oewntk.model.SenseKey
 import org.oewntk.model.SynsetId
@@ -12,6 +13,10 @@ sealed class Value {
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("null")
     object NullValue : Value()
+
+    @kotlinx.serialization.Serializable
+    @kotlinx.serialization.SerialName("lemma")
+    data class LemmaValue(@kotlinx.serialization.SerialName("#val") val v: String) : Value()
 
     @kotlinx.serialization.Serializable
     @kotlinx.serialization.SerialName("synsetid")
@@ -68,6 +73,7 @@ sealed class Value {
 
 fun Any?.toValue(): Value = when (this) {
     null -> Value.NullValue
+    is Lemma -> Value.StringValue(this.form)
     is SynsetId -> Value.StringValue(this.id)
     is SenseKey -> Value.StringValue(this.id)
     is PronunciationValue -> Value.StringValue(this.ipa)
@@ -87,6 +93,7 @@ fun Any?.toValue(): Value = when (this) {
 
 fun Value?.fromValue(): Any = when (this) {
     Value.NullValue -> "null"
+    is Value.LemmaValue -> v
     is Value.SynsetIdValue -> v
     is Value.SenseKeyValue -> v
     is Value.PronunciationValue -> v

@@ -7,7 +7,7 @@ import java.io.PrintStream
 class TestJsonMethods {
 
     val lex = Lex(
-        lemma = "jest",
+        lemma = Lemma("jest"),
         key2 = "v",
         senseKeys = listOf(SenseKey("jest%2:32:00::"), SenseKey("jest%2:29:00::"))
     )
@@ -19,7 +19,7 @@ class TestJsonMethods {
         synsetId = SynsetId("00855315-v"),
         type = SynsetType.V,
         domain = "communication",
-        members = setOf("joke", "jest"),
+        members = setOf(Lemma("joke"), Lemma("jest")),
         definitions = listOf("tell a joke", "speak humorously"),
         examples = listOf(Example("He often jokes", null)),
     ).apply {
