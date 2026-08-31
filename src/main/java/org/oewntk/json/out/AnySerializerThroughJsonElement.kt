@@ -30,7 +30,7 @@ object AnySerializerThroughJsonElement : KSerializer<Any> {
         is String -> JsonPrimitive(value)
         is Map<*, *> -> JsonObject(
             value.entries.associate { (k, v) ->
-                (k as? String ?: error("Map keys must be String ($k)")) to toJsonElement(v)
+                (k as? String ?: error("Map keys must be String ($k is ${k?.javaClass?.name}) ")) to toJsonElement(v)
             }
         )
 
