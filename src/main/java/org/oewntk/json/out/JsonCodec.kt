@@ -1,7 +1,5 @@
 package org.oewntk.json.out
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 enum class JsonMethod {
@@ -12,7 +10,6 @@ enum class JsonMethod {
 
 class JsonCodec(prettyPrint: Boolean = true, val jsonMethod: JsonMethod = JsonMethod.JSON_ELEMENT) {
 
-    @OptIn(ExperimentalSerializationApi::class)
     val delegate = Json {
         if (prettyPrint) {
             this.prettyPrint = true
