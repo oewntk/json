@@ -15,4 +15,4 @@ Project [json](https://github.com/oewntk/json)
 
 		<groupId>io.github.oewntk</groupId>
 		<artifactId>json</artifactId>
-		<version>3.0.1</version>
+		<version>3.0.2</version>
